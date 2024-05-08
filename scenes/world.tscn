@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://0avmgx4ygtr6"]
+
+[ext_resource type="PackedScene" uid="uid://2xrjo107esr3" path="res://scenes/attractor_2d.tscn" id="1_p616s"]
+[ext_resource type="Script" path="res://scenes/world.gd" id="1_w2hdf"]
+[ext_resource type="PackedScene" uid="uid://cuo3kpqpcd3c6" path="res://scenes/spawn_point.tscn" id="2_3m2xx"]
+
+[node name="World" type="Node2D"]
+script = ExtResource("1_w2hdf")
+
+[node name="Attractor2D" parent="." instance=ExtResource("1_p616s")]
+position = Vector2(576, 324)
+scale = Vector2(2, 2)
+
+[node name="SpawnPoint" parent="." instance=ExtResource("2_3m2xx")]
+unique_name_in_owner = true
+position = Vector2(578, 325)
+enabled = true
+
+[connection signal="spawned_mob" from="SpawnPoint" to="." method="_on_spawn_point_spawned_mob"]

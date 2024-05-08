@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://cuo3kpqpcd3c6"]
+
+[ext_resource type="Script" path="res://scenes/spawn_point.gd" id="1_r1o5a"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gh5xi"]
+radius = 50.0
+
+[node name="SpawnPoint" type="Node2D"]
+script = ExtResource("1_r1o5a")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+unique_name_in_owner = true
+shape = SubResource("CircleShape2D_gh5xi")
+debug_color = Color(0.356863, 0.607843, 0.32549, 0.419608)
+
+[node name="Trigger" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="Trigger" to="." method="_on_trigger_timeout"]
